@@ -133,14 +133,14 @@ void stopPlayback()
 {
   // Disable playback per-sample interrupt.
   TCA0.SINGLE.INTCTRL &= ~TCA_SINGLE_OVF_bm;
-  //TIMSK1 &= ~_BV(OCIE1A);
 
    /* stop timer */
-  TCA0.SINGLE.CTRLA &= ~TCA_SINGLE_ENABLE_bm;      
+  //TCA0.SINGLE.CTRLA &= ~TCA_SINGLE_ENABLE_bm;      
   
   // Disable the PWM timer.
-  //TCCR2B &= ~_BV(CS10);
   TCB1.CTRLA &= ~TCB_ENABLE_bm;
   
   digitalWrite(speakerPin, LOW);
+  // reset sample pointer
+  sample = 0;
 }
